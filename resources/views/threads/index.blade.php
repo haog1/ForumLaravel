@@ -18,7 +18,7 @@
                                     <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                 </h4>
                                 <p>
-                                    <a href="#">{{ $thread->creator->name }}</a> posted at: {{ $thread->created_at }}
+                                    <a href="#">{{ $thread->creator->name }}</a> posted at: {{ $thread->created_at->diffForHumans() }}
                                 </p>
                                 <div class="body">
                                     {{ $thread->body }}
