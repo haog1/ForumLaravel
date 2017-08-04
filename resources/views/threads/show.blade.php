@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<!-- The Reply & Reply form page -->
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -23,6 +25,7 @@
 
                 @foreach($thread->replies as $reply)
 
+                    <!-- Show each single reply -->
                     @include('threads.reply')
 
                 @endforeach
@@ -44,7 +47,7 @@
                         <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-default">Post</button>
+                    <button type="submit" class="btn btn-primary">Post</button>
 
                 </form>
             </div>
