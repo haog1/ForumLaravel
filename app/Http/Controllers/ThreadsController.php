@@ -23,13 +23,24 @@ class ThreadsController extends Controller
     {
         if ($channel->exists){
 
-
-            $threads = $channel->threads()->latest()->get();
+            $threads = $channel->threads()->latest();
 
         }else{
-            $threads = Thread::latest()->get();
+
+            $threads = Thread::latest();
 
         }
+
+        // if request('by'), then should filter by the given username
+        if ($username = request('by')) {
+
+            // firstOrFail makes it unique
+            $user = \App\User::where('name', $username)->firstOrFail();
+
+            $threads->where('user_id', $user->id);
+        }
+
+        $threads = $threads->get();
 
         return view('threads.index', compact('threads'));
     }
@@ -52,9 +63,7 @@ class ThreadsController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
-
             'title' => 'required',
             'body' => 'required',
             'channel_id' => 'required|exists:channels,id'
@@ -67,6 +76,7 @@ class ThreadsController extends Controller
             'title' => request('title'),
             'body'  => request('body')
         ]);
+
         return redirect($thread->path());
     }
 

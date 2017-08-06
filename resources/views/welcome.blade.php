@@ -91,5 +91,6 @@
                 </div>
             </div>
         </div>
+    <script src="https://unpkg.com/vue"></script>
     </body>
 </html>
