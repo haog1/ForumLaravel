@@ -58,27 +58,28 @@
 
                                 <label for="body">Body:</label>
 
-                                <textarea name="body" id="body" required>
-                                    {{ old('body') }}
+                                <textarea name="body" class="form-control" rows="15" placeholder="Have something to say?" required>{{ old('body') }}
                                 </textarea>
 
-                            <div class="form-group">
+                                <br>
 
-                            <button type="submit" class="btn btn-primary">Publish</button>
+                                <div class="form-group">
 
-                            </div>
+                                    <button type="submit" class="btn btn-primary">Publish</button>
 
-                            @if(count($errors))
+                                </div>
 
-                                <ul class="alert alert-danger">
+                                @if(count($errors))
 
-                                    @foreach($errors->all() as $error)
+                                    <ul class="alert alert-danger">
 
-                                        <li>{{ $error }}</li>
+                                        @foreach($errors->all() as $error)
 
-                                    @endforeach
+                                            <li>{{ $error }}</li>
 
-                                </ul>
+                                        @endforeach
+
+                                    </ul>
 
                             @endif
 

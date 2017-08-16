@@ -29,9 +29,8 @@
                                     <a href="#">{{ $thread->creator->name }}</a>
                                     posted at: {{ $thread->created_at->diffForHumans() }}
                                 </p>
-                                <div class="body">
-
-                                    {{!! $thread->body !!}}
+                                <div class="fr-view">
+                                    {!! $thread->body !!}
                                 </div>
                                 <hr>
 
