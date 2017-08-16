@@ -14,14 +14,24 @@
 
                             <article>
 
-                                <h4>
-                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                                </h4>
+                                <div class="level">
+
+                                    <h4 class="flex">
+                                        <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                    </h4>
+
+                                    <a href="{{ $thread->path() }}">{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}</a>
+
+
+                                </div>
+
                                 <p>
-                                    <a href="#">{{ $thread->creator->name }}</a> posted at: {{ $thread->created_at->diffForHumans() }}
+                                    <a href="#">{{ $thread->creator->name }}</a>
+                                    posted at: {{ $thread->created_at->diffForHumans() }}
                                 </p>
                                 <div class="body">
-                                    {{ $thread->body }}
+
+                                    {{!! $thread->body !!}}
                                 </div>
                                 <hr>
 

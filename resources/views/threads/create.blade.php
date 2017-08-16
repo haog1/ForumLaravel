@@ -53,18 +53,14 @@
 
                             </div>
 
-
                             <!--- Field --->
-
                             <div class="form-group">
 
                                 <label for="body">Body:</label>
 
-                                <textarea name="body" class="form-control" id="body"
-                                          placeholder="Have something to say?" rows="15" required>{{ old('body') }}
+                                <textarea name="body" id="body" required>
+                                    {{ old('body') }}
                                 </textarea>
-
-                            </div>
 
                             <div class="form-group">
 
@@ -97,5 +93,6 @@
         </div>
 
     </div>
+
 
 @endsection

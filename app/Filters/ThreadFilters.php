@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ThreadFilters extends Filters
 {
 
-    protected $filters = ['by'];
+    protected $filters = ['by','popular'];
 
     /**
      * @param $username
@@ -25,4 +25,15 @@ class ThreadFilters extends Filters
         return $this->builder->where('user_id', $user->id);
     }
 
+
+    /**
+     * query all array elem and return from highest replies thread
+     * @return mixed
+     */
+    protected function popular()
+    {
+
+        $this->builder->getQuery()->orders = [];
+        return $this->builder->orderBy('replies_count','desc');
+    }
 }
