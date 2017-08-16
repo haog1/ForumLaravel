@@ -38,7 +38,7 @@
         <nav class="nav nav-tabs" id="myTab" role="tablist">
             <div class="container">
                 <div class="navbar-header">
-                    
+
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/threads') }}">
                         {{ config('app.name', 'App.Blade:QAForum') }}
