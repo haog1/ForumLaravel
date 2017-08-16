@@ -49,7 +49,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/threads') }}">
                         {{ config('app.name', 'App.Blade:QAForum') }}
                     </a>
                 </div>
@@ -75,7 +75,7 @@
                         </li>
 
                         <li>
-                            <a href="/threads/create">New Thread</a>
+                            <a href="/threads/create">Write</a>
 
                         </li>
 
@@ -128,15 +128,14 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-
     <!-- Include external JS libs. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
-
     <!-- Include Editor JS files. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.4/js/froala_editor.pkgd.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/vue"></script>
 
     <!-- Initialize the editor. -->
     <script> $(function() { $('#body').froalaEditor() }); </script>
