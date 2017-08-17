@@ -98,6 +98,11 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/profile/{{ Auth::user()->name }}">Profile</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -112,10 +117,11 @@
                             </li>
                         @endif
                     </ul>
+
                 </div>
             </div>
         </nav>
-
+        {{--<br>--}}
         @yield('content')
 
     </div>
@@ -132,6 +138,17 @@
     <script> $(function() { $('textarea').froalaEditor() }); </script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <script>
+
+        $('ul li').hover(function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
+        }, function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+        });
+
+    </script>
 
 
 </body>

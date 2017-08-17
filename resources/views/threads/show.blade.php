@@ -15,7 +15,7 @@
                             at: {{ $thread->created_at->diffForHumans() }}</p>
                     </div>
 
-                    <div class="fr-view">
+                    <div class="panel-body">
                         {!! $thread->body !!}
                     </div>
 

@@ -32,4 +32,7 @@ Route::post('threads', 'ThreadsController@store');
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
 
 Route::post('/replies/{reply}/favorites','FavoritesController@store');
+
 Route::get('/replies/{reply}/favorites', 'FavoritesController@loginRedirect');
+
+Route::get('/profile/{user}','ProfilesController@show');

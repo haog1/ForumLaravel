@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">All Threads</div>
 
@@ -29,7 +29,7 @@
                                     <a href="#">{{ $thread->creator->name }}</a>
                                     posted at: {{ $thread->created_at->diffForHumans() }}
                                 </p>
-                                <div class="fr-view">
+                                <div class="panel-body">
                                     {!! $thread->body !!}
                                 </div>
                                 <hr>
