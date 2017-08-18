@@ -18,7 +18,16 @@ class Thread extends Model
             $builder->withCount('replies');
         });
 
+
+        static::deleting(function ($thread){
+
+            $thread->replies()->delete();
+
+        });
+
     }
+
+
 
     /**
      * Get a string path for the thread.

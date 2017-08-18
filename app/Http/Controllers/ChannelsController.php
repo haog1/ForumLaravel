@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+
+use App\Channel;
 use Illuminate\Http\Request;
 
-class ProfilesController extends Controller
+class ChannelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,11 @@ class ProfilesController extends Controller
      */
     public function index()
     {
-        //
+
+        $channels=Channel::get()->all();
+
+        return view('threads.channels',compact('channels'));
+
     }
 
     /**
@@ -44,13 +49,9 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)  // showing the profile of current loggedin user
+    public function show($id)
     {
-        return view('profiles.show',[
-            'profileUser' => $user,
-            'threads' => $user->threads()->paginate(25)
-
-        ]);
+        //
     }
 
     /**

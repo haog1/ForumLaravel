@@ -23,6 +23,8 @@ class ThreadsController extends Controller
      */
     public function index(Channel $channel, ThreadFilters $filters)
     {
+//        $threads = $this->getThreads($channel, $filters);
+
         $threads = $this->getThreads($channel, $filters);
 
         if (request()->wantsJson()){
@@ -31,7 +33,7 @@ class ThreadsController extends Controller
 
 //        dd($threads->toSql());
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index',compact('threads'));
     }
 
     /**
@@ -75,7 +77,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $threads
      * @return \Illuminate\Http\Response
      */
-    public function show($ChannelId, Thread $thread)
+    public function show($Channel, Thread $thread)
     {
 //        return view('threads.show',compact('thread'));
 
@@ -115,9 +117,29 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $threads
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $threads)
+    public function destroy($channel, Thread $thread)
     {
-        //
+//        $thread->replies()->delete(); // delete all related replies
+
+//        if ($thread->user_id != auth()->id()){
+////            if (request()->wantsJson()){
+////                return response(['status'=>'Permission Denied'],403);
+////            };
+////
+////            return redirect('#');
+//            abort(403,'You do not have the permission to delete.');
+//        }
+
+        $this->authorize('update',$thread); // uses of ThreadPolicy and associate policy and thread in AuthServiceProvider
+
+        $thread->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+
+        return redirect('/threads');
+
     }
 
     /**

@@ -2,7 +2,7 @@
     <div class="panel-primary">
         <div class="level">
             <h5 class="flex">
-            <a href="#">
+            <a href="/profile/{{ $reply->owner->name }}">
                 &nbsp {{ $reply->owner->name }}
             </a> &nbsp said {{ $reply->created_at->diffForHumans() }}...
             </h5>
