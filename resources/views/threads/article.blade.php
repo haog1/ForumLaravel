@@ -5,10 +5,14 @@
 
             <!--title-->
             <div class="level">
-                <h4 class="flex">
-                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                </h4>
-                <a href="{{ $thread->path() }}">{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}</a>
+                <h3 class="flex">
+                    <a href="{{ $thread->path() }}" style="display:inline-block !important;">
+                        {{ $thread->title }}
+                    </a>
+                </h3>
+                <a href="{{ $thread->path() }}">
+                    {{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}
+                </a>
             </div>
 
             <!-- subtitle -->

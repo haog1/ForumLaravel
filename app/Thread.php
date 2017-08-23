@@ -8,25 +8,44 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
 
+    use RecordsActivity;
+
+
+    /**
+     * Don't auto-apply mass assignment protection
+     * @var array
+     */
     protected $guarded = [];
+
+    /**
+     * @var array
+     */
     protected $with = ['creator','channel'];
 
+    /**
+     * Boot the model
+     */
     protected static function boot()
     {
+
         parent::boot();
+
         static::addGlobalScope('replyCount', function ($builder){
             $builder->withCount('replies');
-        });
 
+        });
 
         static::deleting(function ($thread){
 
-            $thread->replies()->delete();
+            // this is a short or built in form
+            $thread->replies->each->delete();
+//            $thread->replies->each(function ($reply){
+//                $reply->delete();
+//            });
 
         });
 
     }
-
 
 
     /**
@@ -36,9 +55,7 @@ class Thread extends Model
      */
     public function path()
     {
-//        return '/threads/'.$this->id;
         return "/threads/{$this->channel->slug}/{$this->id}";
-        //return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
     /**
@@ -68,10 +85,16 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
+
         $this->replies()->create($reply);
     }
 
 
+    /**
+     * @param $query
+     * @param $filters
+     * @return mixed
+     */
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);

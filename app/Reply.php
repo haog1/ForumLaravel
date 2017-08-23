@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
 
-    use favoritable;
+    use favoritable, RecordsActivity;
 
     protected $guarded = [];
-    protected $with = ['owner','favorites']; // query reduction
+    protected $with = ['owner','favorites','thread']; // query reduction
     /**
      * set up reply owner
      */
@@ -19,6 +19,16 @@ class Reply extends Model
 
         return $this->belongsTo(User::class,'user_id');
 
+    }
+
+    /**
+     * A reply belongs to a thread.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
     }
 
 }

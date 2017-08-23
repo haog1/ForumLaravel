@@ -3,24 +3,41 @@
 @section('content')
 
     <div class="container">
+
+        <div class="page-header" style="margin-top: 150px !important;">
+
+                @if($profileUser->id == auth()->id())
+
+                    <h1>Hello {{ $profileUser->name }},
+                        <small>Since: {{ $profileUser->created_at->diffForHumans() }}</small></h1>
+                @else
+                    <h1>{{ $profileUser->name }},
+                        <small>Since: {{ $profileUser->created_at->diffForHumans() }}</small></h1>
+                @endcan
+
+        </div>
+
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 ">
-                <div class="page-header">
-                    <!--write cover image here-->
-                    <h1>
-                        {{ $profileUser->name }}
-                        <small>Since: {{ $profileUser->created_at->diffForHumans() }}</small>
-                    </h1>
-                </div>
 
-                @foreach ($threads as $thread)
+            <div class="col-md-8">
 
-                    @include('threads.article')
+                @forelse ($activities as $date => $activity)
 
-                @endforeach
+                    <h3 class="page-header">{{ $date }}</h3>
 
-                {{ $threads->links() }}
+                    @foreach ($activity as $record)
+
+                        @include ("profiles.activities.{$record->type}", ['activity' => $record])
+
+                    @endforeach
+
+                @empty
+                    <h1 class="col-md-12 col-md-offset-6" style="text-align: center; margin:60px 0 60px 0; color: lightgrey">Currently no activities yet.</h1>
+
+
+                @endforelse
             </div>
+
         </div>
     </div>
 

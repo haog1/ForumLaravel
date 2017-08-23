@@ -12,11 +12,11 @@
 
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">Create a New Thread</div>
+                    <div class="panel-heading">
+                        Create a New Thread
+                    </div>
 
                     <div class="panel-body">
-
-                        <!--- Form Field --->
 
                         <form method="POST" action="/threads">
 
@@ -44,42 +44,39 @@
 
                             </div>
 
+                            <label for="title">Title:</label>
                             <div class="form-group">
-
-                                <label for="title">Title:</label>
-
                                 <input type="text" name="title" class="form-control" id="id" placeholder="title"
                                        value="{{ old('title') }}" required>
 
                             </div>
 
-                            <!--- Field --->
+                            <label for="body">Body:</label>
+                            <div class="form-group">
+                                <textarea name="body" id="body" class="form-control"  placeholder="Have something to say?" rows="15" required>
+                                    {{ old('body') }}
+                                </textarea>
+                            </div>
+
+                            <br>
+
                             <div class="form-group">
 
-                                <label for="body">Body:</label>
+                                <button type="submit" class="btn btn-primary">Publish</button>
 
-                                <textarea name="body" class="form-control" rows="15" placeholder="Have something to say?" required>{{ old('body') }}
-                                </textarea>
+                            </div>
 
-                                <br>
+                            @if(count($errors))
 
-                                <div class="form-group">
+                                <ul class="alert alert-danger">
 
-                                    <button type="submit" class="btn btn-primary">Publish</button>
+                                    @foreach($errors->all() as $error)
 
-                                </div>
+                                        <li>{{ $error }}</li>
 
-                                @if(count($errors))
+                                    @endforeach
 
-                                    <ul class="alert alert-danger">
-
-                                        @foreach($errors->all() as $error)
-
-                                            <li>{{ $error }}</li>
-
-                                        @endforeach
-
-                                    </ul>
+                                </ul>
 
                             @endif
 
@@ -94,6 +91,5 @@
         </div>
 
     </div>
-
 
 @endsection

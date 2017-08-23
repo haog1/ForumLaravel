@@ -24,16 +24,16 @@
                 </div>
 
 
-            @forelse($replies as $reply)
+                @forelse($replies as $reply)
 
-                @include('threads.reply')
+                    @include('threads.reply')
 
                 @empty
                     <h5 style="margin:60px 0 60px 0; color: lightgrey">Currently no comments yet. Be the first one to comment.</h5>
 
-            @endforelse
+                @endforelse
 
-            {{ $replies->links() }}
+                {{ $replies->links() }}
 
             <!-- Reply Form Section -->
                 @if(auth::check())
@@ -44,14 +44,16 @@
 
                     <!---  Field --->
                         <div class="form-group">
-                            <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
+                            <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Post</button>
 
                     </form>
                 @else
-                    <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to comment.</p>
+                    <div style="text-align: center !important;">
+                        <p class="text-center" style="display: inline;">Please <a href="{{ route('login') }}" style="display: inline;">sign in</a> to comment.</p>
+                    </div>
                 @endif
             </div>
 
