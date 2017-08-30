@@ -52,7 +52,7 @@ class RepliesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return back(); // redirect to previous position
+        return back()->with('flash','Your reply has been added.'); // redirect to previous position
     }
 
     /**

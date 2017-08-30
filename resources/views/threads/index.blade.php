@@ -19,8 +19,8 @@
 
             <div class="col-md-3">
                 {{--<br><br>--}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="panel panel-default" style="border: 0">
+                    <div class="panel-body">
 
                         <div>
                             <h4>

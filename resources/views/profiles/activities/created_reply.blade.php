@@ -2,7 +2,12 @@
 @component('profiles.activities.activity')
 
     @slot('heading')
-        {{ $profileUser->name }} replied to
+
+        @if ($profileUser->id == auth()->id())
+            You replied to
+        @else
+            {{ $profileUser->name }} replied to
+        @endif
 
         {{--Reply need a thread attribute so add a function in Reply.php--}}
         <a href="{{ $activity->subject->thread->path() }}" style="display: inline-block !important;">
