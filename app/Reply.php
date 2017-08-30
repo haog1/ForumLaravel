@@ -11,6 +11,17 @@ class Reply extends Model
 
     protected $guarded = [];
     protected $with = ['owner','favorites','thread']; // query reduction
+//
+//    protected static function boot()
+//    {
+//
+////        parent::boot();
+//
+//        static::deleting(function ($reply) {
+//            $reply->favorites->each->delete();
+//        });
+//    }
+
     /**
      * set up reply owner
      */
@@ -30,5 +41,10 @@ class Reply extends Model
     {
         return $this->belongsTo(Thread::class);
     }
+
+    public function path(){
+        return $this->thread->path() . "#reply-" . $this->id;
+    }
+
 
 }

@@ -12,6 +12,16 @@ namespace App;
 trait Favoritable
 {
 
+    protected static function bootFavoritable()
+    {
+        if (!auth()->check()) {
+            return;
+        }
+        static::deleting(function ($reply) {
+            $reply->favorites->each->delete();
+        });
+    }
+
     public function favorites()
     {
         return $this->morphMany(Favorite::class,'favorited');

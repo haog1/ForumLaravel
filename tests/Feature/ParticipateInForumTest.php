@@ -16,7 +16,7 @@ class ParticipateInForumTest extends TestCase
     function unauth_user_cannot_add_reply()
     {
         $this->withExceptionHandling()
-             ->post('/threads/somechannel/1/replies',[])->assertRedirect('/login');
+            ->post('/threads/somechannel/1/replies', [])->assertRedirect('/login');
     }
 
     /**
@@ -52,6 +52,58 @@ class ParticipateInForumTest extends TestCase
 
         $this->post($thread->path() . '/replies', $reply->toArray())
             ->assertSessionHasErrors('body');
+    }
+
+    /** @test */
+    function unauth_user_cannot_delete_replies()
+    {
+        $this->withExceptionHandling();
+
+        $reply = create('App\Reply');
+
+        $this->delete("/replies/{$reply->id}")->assertRedirect('/login');
+
+        $this->signIn()
+            ->delete("/replies/{$reply->id}")->assertStatus(403);
+
+    }
+
+    /** @test */
+    function auth_can_delete_replies()
+    {
+        $this->signIn();
+        $reply = create('App\Reply',['user_id' => auth()->id()] );
+
+        $this->delete("/replies/{$reply->id}")->assertStatus(302);
+        $this->assertDatabaseMissing('replies',['id' => $reply->id]);
+
+
+    }
+
+    /** @test */
+    function unauth_user_cannot_update_replies()
+    {
+        $this->withExceptionHandling();
+
+        $reply = create('App\Reply');
+
+        $this->patch("/replies/{$reply->id}")->assertRedirect('/login');
+
+        $this->signIn()
+            ->patch("/replies/{$reply->id}")->assertStatus(403);
+
+    }
+
+
+    /** @test */
+    function auth_user_can_update_replies()
+    {
+        $this->signIn();
+        $reply = create('App\Reply',['user_id' => auth()->id()] );
+        $this->patch("/replies/{$reply->id}",['body'=> "you've been changed"]);
+
+        $this->assertDatabaseHas('replies',['id'=>$reply->id, 'body' => "you've been changed"]);
+
     }
 
 

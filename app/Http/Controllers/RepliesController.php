@@ -84,9 +84,11 @@ class RepliesController extends Controller
      * @param  \App\Reply  $replies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $replies)
+    public function update(Reply $reply)
     {
-        //
+        $this->authorize('update', $reply);
+
+        $reply->update(['body' => request('body') ]);
     }
 
     /**
@@ -95,8 +97,14 @@ class RepliesController extends Controller
      * @param  \App\Reply  $replies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $replies)
+    public function destroy(Reply $reply)
     {
-        //
+
+        $this->authorize('update', $reply);
+
+        $reply->delete();
+
+        return back()->with('flash', 'Your reply has been deleted.');
+
     }
 }

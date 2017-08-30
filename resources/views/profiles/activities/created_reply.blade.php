@@ -4,9 +4,9 @@
     @slot('heading')
 
         @if ($profileUser->id == auth()->id())
-            You replied to
+            You <p style="display:inline; color: #1e88e5"> replied</p> to
         @else
-            {{ $profileUser->name }} replied to
+            {{ $profileUser->name }} <p style="display:inline; color: #1e88e5"> replied</p> to
         @endif
 
         {{--Reply need a thread attribute so add a function in Reply.php--}}

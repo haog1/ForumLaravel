@@ -61,6 +61,22 @@
         text-decoration: none;
     }
 
+    .level {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex {
+        flex:1;
+    }
+    .mr-1 {
+        margin-right: 1em;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+
 </style>
 
 <div id="app" style="margin-top: 90px;">

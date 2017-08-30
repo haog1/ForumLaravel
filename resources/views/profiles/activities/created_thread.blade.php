@@ -2,7 +2,13 @@
 @component('profiles.activities.activity')
 
     @slot('heading')
-        {{ $profileUser->name }} published
+
+
+            @if ($profileUser->id == auth()->id())
+                You <p style="display:inline;color: #ff6666">published </p> to
+            @else
+                {{ $profileUser->name }} <p style="display:inline;color: #ff6666">published </p> to
+            @endif
 
         <a href="{{ $activity->subject->path() }}" style="display: inline-block !important;">
             {!! $activity->subject->title !!}
