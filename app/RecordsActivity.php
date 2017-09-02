@@ -31,6 +31,9 @@ trait RecordsActivity
     }
 
 
+    /**
+     * @return array
+     */
     protected static function getActivityToRecord()
     {
         return ['created'];

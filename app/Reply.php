@@ -11,16 +11,16 @@ class Reply extends Model
 
     protected $guarded = [];
     protected $with = ['owner','favorites','thread']; // query reduction
-//
-//    protected static function boot()
-//    {
-//
-////        parent::boot();
-//
-//        static::deleting(function ($reply) {
-//            $reply->favorites->each->delete();
-//        });
-//    }
+    protected $appends = ['favoritesCount','isFavorited'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($reply) {
+            $reply->favorites->each->delete();
+        });
+    }
 
     /**
      * set up reply owner

@@ -36,13 +36,7 @@ class Thread extends Model
         });
 
         static::deleting(function ($thread){
-
-            // this is a short or built in form
             $thread->replies->each->delete();
-//            $thread->replies->each(function ($reply){
-//                $reply->delete();
-//            });
-
         });
 
     }

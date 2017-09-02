@@ -40,12 +40,27 @@ trait Favoritable
         }
     }
 
+    /**
+     * Favorite the current reply.
+     *
+     * @return Model
+     */
+    public function unFavorite()
+    {
+        $ids = ['user_id' => auth()->id()];
+        $this->favorites()->where($ids)->get()->each->delete();
+    }
+
 
     public function isFavorited()
     {
         return !! $this->favorites->where('user_id',auth()->id())->count();
     }
 
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
 
     public function getFavoritesCountAttribute()
     {

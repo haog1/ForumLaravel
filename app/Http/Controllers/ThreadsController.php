@@ -115,17 +115,6 @@ class ThreadsController extends Controller
      */
     public function destroy($channel, Thread $thread)
     {
-//        $thread->replies()->delete(); // delete all related replies
-
-//        if ($thread->user_id != auth()->id()){
-////            if (request()->wantsJson()){
-////                return response(['status'=>'Permission Denied'],403);
-////            };
-////
-////            return redirect('#');
-//            abort(403,'You do not have the permission to delete.');
-//        }
-
         $this->authorize('update',$thread); // uses of ThreadPolicy and associate policy and thread in AuthServiceProvider
 
         $thread->delete();
@@ -134,7 +123,7 @@ class ThreadsController extends Controller
             return response([], 204);
         }
 
-        return redirect('/threads');
+        return redirect('/threads')->with('flash','Your thread has been deleted!');
 
     }
 
