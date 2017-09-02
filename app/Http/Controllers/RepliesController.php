@@ -93,7 +93,7 @@ class RepliesController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     *w
      * @param  \App\Reply  $replies
      * @return \Illuminate\Http\Response
      */
@@ -104,7 +104,11 @@ class RepliesController extends Controller
 
         $reply->delete();
 
-        return back()->with('flash', 'Your reply has been deleted.');
+        if (request()->expectsJson()) {
+            return response(['status' => 'Reply deleted']);
+        }
+
+        return back();
 
     }
 }

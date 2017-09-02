@@ -42,7 +42,7 @@ class ReadThreadsTest extends TestCase
 
         // given a thread with some replies,
         $this->get($this->thread->path())->assertSee($reply->body);
-        // when we visit the thread page,
+        // when we visit the thread pages,
         // then we should see the replies
     }
 

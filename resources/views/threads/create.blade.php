@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<!-- The Create Thread Form page -->
+<!-- The Create Thread Form pages -->
 
 @section('content')
 

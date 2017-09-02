@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,64 +20,73 @@
     <link href="{{ asset('css/editor/froala_editor.min.css') }}" rel="stylesheet" type="text/css" />
     {{--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
 
+    <script>
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'user' => Auth::user(),
+            'signedIn' => Auth::check()
+        ]) !!};
+    </script>
+
+    <style>
+
+        body { padding-bottom: 100px; }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        iframe {
+            width: 100% !important;
+        }
+
+        img{
+            width: 100% !important;
+        }
+
+        .totop {
+            position: fixed;
+            bottom: 10px;
+            right: 25px;
+        }
+
+        .totop a {
+            display: none;
+        }
+
+        a, a:visited {
+            color: #33739E;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .level {
+            display: flex;
+            align-items: center;
+        }
+
+        .flex {
+            flex:1;
+        }
+        .mr-1 {
+            margin-right: 1em;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<style>
-
-    body { padding-bottom: 100px; }
-
-    a {
-        text-decoration: none !important;
-    }
-
-    iframe {
-        width: 100% !important;
-    }
-
-    img{
-        width: 100% !important;
-    }
-
-    .totop {
-        position: fixed;
-        bottom: 10px;
-        right: 25px;
-    }
-
-    .totop a {
-        display: none;
-    }
-
-    a, a:visited {
-        color: #33739E;
-        text-decoration: none;
-        display: block;
-        margin: 10px 0;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    .level {
-        display: flex;
-        align-items: center;
-    }
-
-    .flex {
-        flex:1;
-    }
-    .mr-1 {
-        margin-right: 1em;
-    }
-
-    [v-cloak] {
-        display: none;
-    }
-
-</style>
 
 <div id="app" style="margin-top: 90px;">
     @include('layouts.nav')
