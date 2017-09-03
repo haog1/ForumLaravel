@@ -26,28 +26,9 @@
                     </div>
 
                     <!---  replies section --->
-                    <replies :data="{{ $thread->replies }}" @removed="repliesCount--"></replies>
+                    <replies :data="{{ $thread->replies }}" @added="repliesCount++" @removed="repliesCount--"></replies>
                     {{--{{ $replies->links() }}--}}
 
-                    <!-- Reply Form Section -->
-                    @if(auth::check())
-
-                        <form method="POST" action="{{ $thread->path().'/replies' }}">
-
-                            {{ csrf_field() }}
-
-                            <div class="form-group">
-                                <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5" required></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Post</button>
-
-                        </form>
-                    @else
-                        <div style="text-align: center !important;">
-                            <p class="text-center" style="display: inline;">Please <a href="{{ route('login') }}" style="display: inline;">sign in</a> to comment.</p>
-                        </div>
-                    @endif
                 </div>
 
                 <!-- Middle space -->
