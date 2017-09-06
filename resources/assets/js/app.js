@@ -19,7 +19,7 @@ Vue.component('flash', require('./components/flash.vue'));
 
 Vue.component('thread-view', require('./pages/Thread.vue'));
 
-// Vue.component('new-reply', require('./components/NewReply.vue'));
+Vue.component('paginator', require('./components/Paginator.vue'));
 
 const app = new Vue({
     el: '#app'

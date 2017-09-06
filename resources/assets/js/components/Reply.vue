@@ -3,8 +3,7 @@
         <div class="panel-primary">
             <div class="level">
                 <h5 class="flex">
-                    <a :href="'/profile/'+ data.owner.name" v-text="data.owner.name" style="margin-left:10px; display: inline-block;"></a>
-                    &nbsp said <span v-text="ago"></span>
+                    <a :href="'/profile/'+ data.owner.name" v-text="data.owner.name" style="margin-left:10px; display: inline-block;"></a> replied <span v-text="ago"></span>
                 </h5>
 
                 <div v-if="signedIn">
@@ -55,7 +54,7 @@
 
         computed: {
             ago() {
-               return moment(this.data.created_at).fromNow();
+               return moment(this.data.created_at).fromNow() + "...";
             },
             signedIn(){
                 return window.App.signedIn;
