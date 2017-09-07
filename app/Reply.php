@@ -2,6 +2,7 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
@@ -19,6 +20,15 @@ class Reply extends Model
 
         static::deleting(function ($reply) {
             $reply->favorites->each->delete();
+        });
+
+
+        static::created(function ($reply){
+            $reply->thread->increment('replies_count');
+        });
+
+        static::deleted(function ($reply){
+            $reply->thread->decrement('replies_count');
         });
     }
 

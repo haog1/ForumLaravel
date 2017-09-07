@@ -26543,7 +26543,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(128);
-module.exports = __webpack_require__(177);
+module.exports = __webpack_require__(180);
 
 
 /***/ }),
@@ -26570,7 +26570,7 @@ Vue.component('flash', __webpack_require__(153));
 
 Vue.component('thread-view', __webpack_require__(161));
 
-Vue.component('paginator', __webpack_require__(186));
+Vue.component('paginator', __webpack_require__(177));
 
 var app = new Vue({
   el: '#app'
@@ -58951,7 +58951,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "dataSet": _vm.dataSet
     },
     on: {
-      "updated": _vm.fetch
+      "changed": _vm.fetch
     }
   }), _vm._v(" "), _c('new-reply', {
     on: {
@@ -58969,28 +58969,14 @@ if (false) {
 
 /***/ }),
 /* 177 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(187),
+  __webpack_require__(178),
   /* template */
-  __webpack_require__(188),
+  __webpack_require__(179),
   /* styles */
   null,
   /* scopeId */
@@ -59022,7 +59008,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 187 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59078,7 +59064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         broadcast: function broadcast() {
-            this.$emit('updated', this.page);
+            this.$emit('changed', this.page);
             return this;
         },
         updateUrl: function updateUrl() {
@@ -59089,7 +59075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 188 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -59158,6 +59144,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-608f05d0", module.exports)
   }
 }
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
