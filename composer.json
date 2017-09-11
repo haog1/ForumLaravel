@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.4",
         "barryvdh/laravel-ide-helper": "^2.4",
+        "doctrine/dbal": "^2.6",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },
@@ -19,7 +20,7 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "rdatabase/factories"
+            "database/factories"
         ],
         "psr-4": {
             "App\\": "app/"
@@ -44,8 +45,11 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ]
+
     },
     "config": {
         "preferred-install": "dist",

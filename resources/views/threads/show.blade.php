@@ -36,7 +36,7 @@
                 <!-- Right Section -->
                 <div class="col-md-4">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-body">
                             <h5>
                                 This was published at <p style="color: lightgray; display: inline !important;">
                                     {{ $thread->created_at }}</p>
@@ -45,15 +45,19 @@
 
                             </h5>
 
+                            <p style="width:auto; display: inline-block">
+                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+
+                            </p>
+
                             @can ('update', $thread)
-                                <form action="{{ $thread->path() }}" method="POST">
+                                <form action="{{ $thread->path() }}" method="POST" style="float: right;">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Delete </button>
                                 </form>
                             @endcan
                         </div>
-
                     </div>
                 </div>
 

@@ -46,6 +46,6 @@
     .alert-flash {
         position: fixed;
         right: 50px;
-        top: 230px;
+        top: 35%;
     }
 </style>
