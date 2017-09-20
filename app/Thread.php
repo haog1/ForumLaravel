@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Notifications\ThreadWasUpdated;
-use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -80,20 +78,24 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
-
         $reply = $this->replies()->create($reply);
 
-        //notify all subscribers when there is a new reply added
-        // an alternative way to write foreach loop
-        $this->subscriptions
-            ->filter(function ($sub) use ($reply) {
-                return $sub->user_id != $reply->user_id;
-            })->each->notify($reply);
-//            ->each(function ($sub) use ($reply) {
-//                $sub->user->notify(new ThreadWasUpdated($this, $reply));
-//            });
+        $this->notifySubscribers($reply);
 
         return $reply;
+    }
+
+
+    /**
+     * @param Reply $reply
+     */
+    public function notifySubscribers($reply)
+    {
+        //    notify all subscribers when there is a new reply added
+        //    an alternative way to write foreach loop
+        $this->subscriptions
+            ->where('user_id', '!=', $reply->user_id)
+            ->each->notify($reply);
     }
 
 
@@ -145,6 +147,18 @@ class Thread extends Model
     public function getIsSubscribedToAttribute()
     {
         return $this->subscriptions()->where('user_id', auth()->id())->exists();
+    }
+
+
+    public function hasUpdatesFor($user = null)
+    {
+
+        $user = $user ?: auth()->user();
+
+        $key = $user->visitedThreadCacheKey($this);
+
+        return $this->updated_at > cache($key);
+
     }
 
 }

@@ -7,7 +7,12 @@
             <div class="level">
                 <h3 class="flex">
                     <a href="{{ $thread->path() }}" style="display:inline-block !important;">
-                        {{ $thread->title }}
+
+                        @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
+                            <strong style="color: darkgray">{{ $thread->title }}</strong>
+                        @else
+                            {{ $thread->title }}
+                        @endif
                     </a>
                 </h3>
                 <a href="{{ $thread->path() }}">
